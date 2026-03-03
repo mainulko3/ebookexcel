@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WhatsApp Follow-up | My DG Store</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #0D1B2A;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .container {
+    background: #1B2A4A;
+    border-radius: 16px;
+    padding: 30px;
+    width: 100%;
+    max-width: 480px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  }
+  .logo {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .logo h1 {
+    color: #FFD700;
+    font-size: 22px;
+  }
+  .logo p {
+    color: #aaa;
+    font-size: 13px;
+    margin-top: 4px;
+  }
+  .tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+  .tab {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.2s;
+    background: #0D1B2A;
+    color: #aaa;
+  }
+  .tab.active {
+    background: #25D366;
+    color: white;
+  }
+  .section { display: none; }
+  .section.active { display: block; }
+  label {
+    display: block;
+    color: #ccc;
+    font-size: 13px;
+    margin-bottom: 6px;
+    margin-top: 16px;
+  }
+  input, textarea, select {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #2a3f6f;
+    background: #0D1B2A;
+    color: #fff;
+    font-size: 14px;
+    outline: none;
+    transition: border 0.2s;
+  }
+  input:focus, textarea:focus {
+    border-color: #25D366;
+  }
+  textarea { resize: vertical; min-height: 100px; line-height: 1.6; }
+  .msg-template {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+  }
+  .tmpl-btn {
+    padding: 6px 12px;
+    border-radius: 20px;
+    border: 1px solid #2a3f6f;
+    background: transparent;
+    color: #aaa;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .tmpl-btn:hover {
+    border-color: #25D366;
+    color: #25D366;
+  }
+  .send-btn {
+    width: 100%;
+    padding: 14px;
+    border-radius: 10px;
+    border: none;
+    background: #25D366;
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  .send-btn:hover { background: #1ebe5a; }
+  .bulk-list {
+    background: #0D1B2A;
+    border-radius: 8px;
+    padding: 12px;
+    margin-top: 10px;
+    max-height: 180px;
+    overflow-y: auto;
+  }
+  .bulk-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #1B2A4A;
+    color: #ccc;
+    font-size: 13px;
+  }
+  .bulk-item:last-child { border-bottom: none; }
+  .remove-btn {
+    background: #e74c3c;
+    border: none;
+    color: white;
+    border-radius: 4px;
+    padding: 2px 8px;
+    cursor: pointer;
+    font-size: 11px;
+  }
+  .add-btn {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px dashed #25D366;
+    background: transparent;
+    color: #25D366;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  .counter {
+    text-align: center;
+    color: #aaa;
+    font-size: 12px;
+    margin-top: 8px;
+  }
+  .success-toast {
+    display: none;
+    background: #25D366;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 8px;
+    text-align: center;
+    margin-top: 12px;
+    font-size: 14px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="logo">
+    <h1>📱 WhatsApp Follow-up</h1>
+    <p>My DG Store — Customer Messaging Tool</p>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab('single')">একজনকে পাঠাও</button>
+    <button class="tab" onclick="switchTab('bulk')">একসাথে অনেককে</button>
+  </div>
+
+  <!-- SINGLE -->
+  <div class="section active" id="single">
+    <label>📞 Customer এর Phone Number (WhatsApp)</label>
+    <input type="text" id="singlePhone" placeholder="01XXXXXXXXX" />
+
+    <label>💬 Message</label>
+    <div class="msg-template">
+      <button class="tmpl-btn" onclick="setMsg('thankyou')">✅ Thank You</button>
+      <button class="tmpl-btn" onclick="setMsg('review')">⭐ Review চাও</button>
+      <button class="tmpl-btn" onclick="setMsg('followup')">🔔 Follow Up</button>
+    </div>
+    <textarea id="singleMsg" placeholder="এখানে message লিখুন..."></textarea>
+
+    <button class="send-btn" onclick="sendSingle()">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.122 1.528 5.858L0 24l6.335-1.652A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.374l-.36-.213-3.732.979.993-3.648-.235-.374A9.818 9.818 0 1112 21.818z"/></svg>
+      WhatsApp এ পাঠাও
+    </button>
+    <div class="success-toast" id="singleToast">✅ WhatsApp খুলছে...</div>
+  </div>
+
+  <!-- BULK -->
+  <div class="section" id="bulk">
+    <label>📞 Phone Number যোগ করো</label>
+    <div style="display:flex; gap:8px;">
+      <input type="text" id="bulkPhone" placeholder="01XXXXXXXXX" style="flex:1" />
+      <button class="send-btn" style="width:auto; margin:0; padding: 12px 16px;" onclick="addNumber()">+</button>
+    </div>
+
+    <div class="bulk-list" id="bulkList">
+      <p style="color:#555; text-align:center; font-size:13px;">এখনো কোনো number যোগ করা হয়নি</p>
+    </div>
+    <p class="counter" id="bulkCounter">মোট: ০ জন</p>
+
+    <label>💬 Message</label>
+    <div class="msg-template">
+      <button class="tmpl-btn" onclick="setBulkMsg('thankyou')">✅ Thank You</button>
+      <button class="tmpl-btn" onclick="setBulkMsg('review')">⭐ Review চাও</button>
+      <button class="tmpl-btn" onclick="setBulkMsg('followup')">🔔 Follow Up</button>
+    </div>
+    <textarea id="bulkMsg" placeholder="এখানে message লিখুন..."></textarea>
+
+    <button class="send-btn" onclick="sendBulk()">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.122 1.528 5.858L0 24l6.335-1.652A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.374l-.36-.213-3.732.979.993-3.648-.235-.374A9.818 9.818 0 1112 21.818z"/></svg>
+      সবাইকে পাঠাও
+    </button>
+    <div class="success-toast" id="bulkToast">✅ পাঠানো শুরু হচ্ছে...</div>
+  </div>
+</div>
+
+<script>
+const msgs = {
+  thankyou: `আসসালামু আলাইকুম! 😊\n\nআমি My DG Store থেকে বলছি।\n\n"জিরো টু অফিস হিরো" eBook টি পেয়েছেন তো? বই সংক্রান্ত কোনো সমস্যা হলে আমাকে জানাবেন!\n\nধন্যবাদ আমাদের সাথে থাকার জন্য 🙏`,
+  review: `আসসালামু আলাইকুম! 😊\n\nআশা করি "জিরো টু অফিস হিরো" বইটা পড়া শুরু করেছেন!\n\nবইটা পড়ে কেমন লাগলো একটু জানাবেন? আপনার একটা রিভিউ আমাদের অনেক অনুপ্রেরণা দেবে 🙏\n\n👉 আমাদের Facebook Page: https://www.facebook.com/mydgstore25`,
+  followup: `আসসালামু আলাইকুম! 😊\n\nMy DG Store থেকে বলছি।\n\n"জিরো টু অফিস হিরো" eBook টি কেমন লাগছে? Excel শিখতে কোনো সমস্যা হচ্ছে?\n\nযেকোনো প্রশ্নে আমি আছি! 💪`
+};
+
+let bulkNumbers = [];
+
+function switchTab(tab) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById(tab).classList.add('active');
+  event.target.classList.add('active');
+}
+
+function setMsg(type) {
+  document.getElementById('singleMsg').value = msgs[type];
+}
+
+function setBulkMsg(type) {
+  document.getElementById('bulkMsg').value = msgs[type];
+}
+
+function formatPhone(phone) {
+  phone = phone.replace(/\D/g, '');
+  if (phone.startsWith('0')) phone = '880' + phone.slice(1);
+  if (!phone.startsWith('880')) phone = '880' + phone;
+  return phone;
+}
+
+function sendSingle() {
+  const phone = document.getElementById('singlePhone').value.trim();
+  const msg = document.getElementById('singleMsg').value.trim();
+  if (!phone || !msg) { alert('Phone number ও message দিন!'); return; }
+  const url = `https://wa.me/${formatPhone(phone)}?text=${encodeURIComponent(msg)}`;
+  window.open(url, '_blank');
+  const toast = document.getElementById('singleToast');
+  toast.style.display = 'block';
+  setTimeout(() => toast.style.display = 'none', 3000);
+}
+
+function addNumber() {
+  const phone = document.getElementById('bulkPhone').value.trim();
+  if (!phone) return;
+  if (bulkNumbers.includes(phone)) { alert('এই number আগেই যোগ করা আছে!'); return; }
+  bulkNumbers.push(phone);
+  document.getElementById('bulkPhone').value = '';
+  renderBulkList();
+}
+
+function removeNumber(i) {
+  bulkNumbers.splice(i, 1);
+  renderBulkList();
+}
+
+function renderBulkList() {
+  const list = document.getElementById('bulkList');
+  if (!bulkNumbers.length) {
+    list.innerHTML = '<p style="color:#555; text-align:center; font-size:13px;">এখনো কোনো number যোগ করা হয়নি</p>';
+  } else {
+    list.innerHTML = bulkNumbers.map((n, i) => `
+      <div class="bulk-item">
+        <span>📞 ${n}</span>
+        <button class="remove-btn" onclick="removeNumber(${i})">বাদ দাও</button>
+      </div>`).join('');
+  }
+  document.getElementById('bulkCounter').textContent = `মোট: ${bulkNumbers.length} জন`;
+}
+
+function sendBulk() {
+  const msg = document.getElementById('bulkMsg').value.trim();
+  if (!bulkNumbers.length || !msg) { alert('Number ও message দিন!'); return; }
+  let i = 0;
+  function sendNext() {
+    if (i >= bulkNumbers.length) return;
+    const url = `https://wa.me/${formatPhone(bulkNumbers[i])}?text=${encodeURIComponent(msg)}`;
+    window.open(url, '_blank');
+    i++;
+    if (i < bulkNumbers.length) setTimeout(sendNext, 2000);
+  }
+  sendNext();
+  const toast = document.getElementById('bulkToast');
+  toast.style.display = 'block';
+  setTimeout(() => toast.style.display = 'none', 3000);
+}
+
+// Enter key to add bulk number
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('bulkPhone').addEventListener('keypress', e => {
+    if (e.key === 'Enter') addNumber();
+  });
+});
+</script>
+</body>
+</html>
