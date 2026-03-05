@@ -27,23 +27,25 @@
     <style>
         html { scroll-behavior: smooth; }
     </style>
-                    <!-- Meta Pixel Code -->
-        <script>
-        !function(f,b,e,v,n,t,s)
-        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-        n.queue=[];t=b.createElement(e);t.async=!0;
-        t.src=v;s=b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t,s)}(window, document,'script',
-        'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '2421391284949805');
-        fbq('track', 'PageView');
-        </script>
-        <noscript><img height="1" width="1" style="display:none"
-        src="https://www.facebook.com/tr?id=2421391284949805&ev=PageView&noscript=1"
-        /></noscript>
-        <!-- End Meta Pixel Code -->
+
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '2421391284949805');
+    fbq('track', 'PageView', {}, {eventID: 'pv_' + Date.now() + '_' + Math.random().toString(36).substr(2,9)});
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=2421391284949805&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans">
 
@@ -54,7 +56,7 @@
             </a>
             <div class="flex gap-3">
                 <a href="https://drive.google.com/file/d/1nhwXteaZTUzda0qmx6Aj784GjPjhj54Q/view?usp=sharing" target="_blank" class="hidden md:block border-2 border-excel-dark text-excel-dark px-4 py-2 rounded-lg font-bold hover:bg-excel-verylight transition">ফ্রি ডেমো</a>
-                <a href="https://dash.zinipay.com/secure/payment-link/561101f7-7398-4cec-b9cc-5c7a3e0e0f2d" class="bg-excel-dark text-white px-5 py-2 rounded-lg font-bold hover:bg-excel-light transition shadow-md">অর্ডার করুন</a>
+                <a href="https://dash.zinipay.com/secure/payment-link/561101f7-7398-4cec-b9cc-5c7a3e0e0f2d" onclick="fbq('track', 'InitiateCheckout')" class="bg-excel-dark text-white px-5 py-2 rounded-lg font-bold hover:bg-excel-light transition shadow-md">অর্ডার করুন</a>
             </div>
         </div>
     </header>
@@ -69,8 +71,8 @@
                     "জিরো টু অফিস হিরো" ই-বুকটি আপনাকে দিচ্ছে ডাটা এন্ট্রি থেকে শুরু করে অ্যাডভান্সড ড্যাশবোর্ড তৈরির কমপ্লিট সল্যুশন।
                 </p>
                 <div class="flex flex-wrap gap-4 justify-center md:justify-start">
-                    <a href="https://dash.zinipay.com/secure/payment-link/561101f7-7398-4cec-b9cc-5c7a3e0e0f2d" class="bg-excel-dark text-white px-10 py-4 rounded-xl text-2xl font-bold shadow-xl hover:bg-excel-light hover:-translate-y-1 transition-all">বইটি সংগ্রহ করুন</a>
-                    <a href="https://drive.google.com/file/d/1nhwXteaZTUzda0qmx6Aj784GjPjhj54Q/view?usp=sharing" target="_blank" class="bg-white text-excel-dark border-2 border-excel-dark px-10 py-4 rounded-xl text-2xl font-bold hover:bg-excel-verylight transition-all">ফ্রি ডেমো দেখুন</a>
+                    <a href="https://dash.zinipay.com/secure/payment-link/561101f7-7398-4cec-b9cc-5c7a3e0e0f2d" onclick="fbq('track', 'InitiateCheckout')" class="bg-excel-dark text-white px-10 py-4 rounded-xl text-2xl font-bold shadow-xl hover:bg-excel-light hover:-translate-y-1 transition-all">বইটি সংগ্রহ করুন</a>
+                    <a href="https://drive.google.com/file/d/1nhwXteaZTUzda0qmx6Aj784GjPjhj54Q/view?usp=sharing" target="_blank" onclick="fbq('track', 'ViewContent')" class="bg-white text-excel-dark border-2 border-excel-dark px-10 py-4 rounded-xl text-2xl font-bold hover:bg-excel-verylight transition-all">ফ্রি ডেমো দেখুন</a>
                 </div>
             </div>
             <div class="md:w-2/5 mt-12 md:mt-0 flex justify-center z-0 relative">
@@ -141,19 +143,19 @@
                 <img src="https://img.freepik.com/free-vector/professional-working-process-concept-illustration_114360-1014.jpg" alt="Work" class="rounded-2xl shadow-lg">
             </div>
             <div class="md:w-1/2">
-                <h3 class="text-3xl font-bold mb-6">কেন এই বইটি আপনার ক্যারিয়ার বদলে দেবে?</h3>
-                <p class="text-lg text-gray-700 mb-6">এই বইটি আপনাকে ঘণ্টার কাজ মিনিটে শেষ করার জাদুকরী কৌশল শেখাবে। এক্সেলে পারদর্শী হলে আপনিও হতে পারবেন অফিসের স্মার্ট এমপ্লয়ি।</p>
+                <h3 class="text-3xl font-bold mb-6">কেন এই বইটি আপনার ক্যারিয়ার বদলে দেবে?</h3>
+                <p class="text-lg text-gray-700 mb-6">এই বইটি আপনাকে ঘণ্টার কাজ মিনিটে শেষ করার জাদুকরী কৌশল শেখাবে। এক্সেলে পারদর্শী হলে আপনিও হতে পারবেন অফিসের স্মার্ট এমপ্লয়ি।</p>
                 <div class="space-y-4 mb-8">
                     <div class="flex items-center gap-3">
                         <div class="bg-excel-dark text-white p-1 rounded-full text-xs">✓</div>
-                        <span class="font-semibold">চাকরি ও প্রমোশন পেতে সহায়ক</span>
+                        <span class="font-semibold">চাকরি ও প্রমোশন পেতে সহায়ক</span>
                     </div>
                     <div class="flex items-center gap-3">
                         <div class="bg-excel-dark text-white p-1 rounded-full text-xs">✓</div>
-                        <span class="font-semibold">নিজের কাজের গতি বহুগুণ বাড়িয়ে দেয়</span>
+                        <span class="font-semibold">নিজের কাজের গতি বহুগুণ বাড়িয়ে দেয়</span>
                     </div>
                 </div>
-                <a href="https://drive.google.com/file/d/1nhwXteaZTUzda0qmx6Aj784GjPjhj54Q/view?usp=sharing" target="_blank" class="inline-block border-2 border-excel-dark text-excel-dark px-6 py-3 rounded-xl font-bold hover:bg-excel-dark hover:text-white transition">ভেতরের কিছু অংশ দেখুন (ফ্রি ডেমো)</a>
+                <a href="https://drive.google.com/file/d/1nhwXteaZTUzda0qmx6Aj784GjPjhj54Q/view?usp=sharing" target="_blank" onclick="fbq('track', 'ViewContent')" class="inline-block border-2 border-excel-dark text-excel-dark px-6 py-3 rounded-xl font-bold hover:bg-excel-dark hover:text-white transition">ভেতরের কিছু অংশ দেখুন (ফ্রি ডেমো)</a>
             </div>
         </div>
     </section>
@@ -168,17 +170,17 @@
                     <span class="text-xl text-gray-400 line-through ml-2">৳ ১৯৯</span>
                 </div>
                 <div class="space-y-3">
-                    <a href="https://dash.zinipay.com/secure/payment-link/561101f7-7398-4cec-b9cc-5c7a3e0e0f2d" class="flex items-center justify-center gap-3 w-full bg-excel-dark text-white text-center py-4 rounded-xl text-xl font-bold hover:bg-excel-light shadow-lg transition-all group">
+                    <a href="https://dash.zinipay.com/secure/payment-link/561101f7-7398-4cec-b9cc-5c7a3e0e0f2d" onclick="fbq('track', 'InitiateCheckout'); fbq('track', 'AddToCart', {value: 99, currency: 'BDT'})" class="flex items-center justify-center gap-3 w-full bg-excel-dark text-white text-center py-4 rounded-xl text-xl font-bold hover:bg-excel-light shadow-lg transition-all group">
                         <span>বিকাশ/নগদ পেমেন্ট</span>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 group-hover:translate-x-1 transition"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>                      
                     </a>
-                    <a href="https://drive.google.com/file/d/1nhwXteaZTUzda0qmx6Aj784GjPjhj54Q/view?usp=sharing" target="_blank" class="block w-full text-center py-3 text-excel-dark font-bold hover:underline">আগে ডেমো পিডিএফ দেখে নিন</a>
+                    <a href="https://drive.google.com/file/d/1nhwXteaZTUzda0qmx6Aj784GjPjhj54Q/view?usp=sharing" target="_blank" onclick="fbq('track', 'ViewContent')" class="block w-full text-center py-3 text-excel-dark font-bold hover:underline">আগে ডেমো পিডিএফ দেখে নিন</a>
                 </div>
                 
                 <ul class="space-y-4 text-sm text-gray-700 border-t border-gray-100 mt-8 pt-6">
                     <li class="flex items-center gap-3">
                         <svg class="w-6 h-6 text-excel-light" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-                        <span class="font-medium">পেমেন্ট করার সাথে সাথে আপনি ই-বুক ডাউনলোড লিংকটি পেয়ে যাবেন, ইনশা আল্লাহ্।</span>
+                        <span class="font-medium">পেমেন্ট করার সাথে সাথে আপনি ই-বুক ডাউনলোড লিংকটি পেয়ে যাবেন, ইনশা আল্লাহ্।</span>
                     </li>
                 </ul>
             </div>
@@ -198,4 +200,3 @@
 
 </body>
 </html>
-
